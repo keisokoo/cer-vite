@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "My Vite Chrome Extension",
+  "version": "1.0.0",
+  "permissions": ["storage", "activeTab", "scripting", "tabs"],
+  "background": {
+    "service_worker": "scripts/background.js"
+  },
+  "host_permissions": ["<all_urls>"],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["scripts/content.js"]
+    }
+  ],
+  "action": {
+    "default_popup": "src/popup/index.html"
+  },
+  "options_page": "src/options/index.html",
+  "web_accessible_resources": [
+    {
+      "resources": ["scripts/content.js"],
+      "matches": ["https://*/*", "http://*/*"]
+    }
+  ]
+}
