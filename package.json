@@ -3,6 +3,9 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "author": "keisokoo@gmail.com",
+  "license": "MIT",
+  "repository": "https://github.com/keisokoo/cer-vite",
   "scripts": {
     "dev": "bun run build:dev && bun run scripts/watch.ts",
     "build": "tsc -b && vite build --mode production",
