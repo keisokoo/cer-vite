@@ -1,12 +1,12 @@
+import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import { resolve } from "path";
 import { defineConfig } from "vite";
-
 export default defineConfig(({ mode }) => ({
   define: {
     "process.env.NODE_ENV": JSON.stringify(mode),
   },
-  plugins: [react()],
+  plugins: [tailwindcss(), react()],
   build: {
     outDir: "dist",
     rollupOptions: {
@@ -19,7 +19,7 @@ export default defineConfig(({ mode }) => ({
       output: {
         entryFileNames: "scripts/[name].js", // 번들 파일 위치 조정
         chunkFileNames: "scripts/[name]-[hash].js",
-        assetFileNames: "assets/[name]-[hash].[ext]",
+        assetFileNames: "styles/[name].[ext]",
       },
     },
   },

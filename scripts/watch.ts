@@ -40,7 +40,6 @@ chokidar
   })
   .on("change", (path) => {
     console.log(`📂 파일 변경 감지됨: ${path}, Vite 빌드 실행 중...`);
-
     exec("bun run build:dev", (err, stdout, stderr) => {
       if (err) {
         console.error("❌ 빌드 오류:", stderr);

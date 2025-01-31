@@ -8,11 +8,13 @@
   "repository": "https://github.com/keisokoo/cer-vite",
   "scripts": {
     "dev": "bun run build:dev && bun run scripts/watch.ts",
-    "build": "tsc -b && vite build --mode production",
-    "build:dev": "tsc -b && vite build --mode development",
+    "build": "bun run styles &&tsc -b && vite build --mode production",
+    "build:dev": "bun run styles && tsc -b && vite build --mode development",
+    "styles": "bunx @tailwindcss/cli -i ./src/content/index.css -o ./dist/styles/content.css",
     "serve": "bunx serve static"
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.0.1",
     "@types/chrome": "^0.0.299",
     "@types/firefox-webext-browser": "^120.0.4",
     "@types/node": "^22.12.0",
@@ -20,6 +22,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "styled-components": "^6.1.14",
+    "tailwindcss": "^4.0.1",
     "ws": "^8.18.0"
   },
   "devDependencies": {

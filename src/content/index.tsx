@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { StyleSheetManager } from "styled-components";
+import tailwindStyles from "../../scripts/tailwindStyles";
 import App from "./App";
-import "./index.css";
 class Gutaku {
   private parent: HTMLElement;
   private element: HTMLElement;
@@ -32,8 +32,11 @@ class Gutaku {
       }
     `;
     const styles = document.createElement("style");
+    const tailwindStyle = document.createElement("style");
+    tailwindStyle.textContent = tailwindStyles || "";
     styles.textContent = rootStyles;
     this.shadow.appendChild(styles);
+    this.shadow.appendChild(tailwindStyle);
   }
 
   public mount() {
