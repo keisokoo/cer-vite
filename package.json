@@ -4,12 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview",
-    "build:all": "rm -rf dist && tsc -b && vite build && cp -r public dist",
-    "watch": "bun run build && bun run scripts/watch.ts"
+    "dev": "bun run build:dev && bun run scripts/watch.ts",
+    "build": "tsc -b && vite build --mode production",
+    "build:dev": "tsc -b && vite build --mode development",
+    "serve": "bunx serve static"
   },
   "dependencies": {
     "@types/chrome": "^0.0.299",
@@ -18,7 +16,6 @@
     "chokidar": "^4.0.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "serve": "^14.2.4",
     "styled-components": "^6.1.14",
     "ws": "^8.18.0"
   },

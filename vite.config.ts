@@ -2,7 +2,10 @@ import react from "@vitejs/plugin-react";
 import { resolve } from "path";
 import { defineConfig } from "vite";
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
+  define: {
+    "process.env.NODE_ENV": JSON.stringify(mode),
+  },
   plugins: [react()],
   build: {
     outDir: "dist",
@@ -28,4 +31,4 @@ export default defineConfig({
       overlay: false, // HMR 오류가 발생해도 브라우저 콘솔에만 출력 (UI 오류 방지)
     },
   },
-});
+}));

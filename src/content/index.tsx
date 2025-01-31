@@ -37,6 +37,7 @@ class Gutaku {
   }
 
   public mount() {
+    console.log("mount");
     this.setStyles();
     this.root = ReactDOM.createRoot(this.shadow);
     this.root.render(
