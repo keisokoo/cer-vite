@@ -11,7 +11,8 @@
     "build": "bun run styles &&tsc -b && vite build --mode production",
     "build:dev": "bun run styles && tsc -b && vite build --mode development",
     "styles": "bunx @tailwindcss/cli -i ./src/content/index.css -o ./dist/styles/content.css",
-    "serve": "bunx serve static"
+    "serve": "bunx serve static",
+    "ws": "bun run scripts/ws.ts"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.1",

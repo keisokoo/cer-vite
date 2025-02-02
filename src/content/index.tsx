@@ -19,18 +19,7 @@ class Gutaku {
   }
 
   private setStyles() {
-    const rootStyles = `
-      :host {
-        position: fixed;
-        top: 0;
-        left: 0;
-        contain: layout paint;
-        z-index: 9999;
-      }
-      :host(:popover-open) {
-        top-layer: true;
-      }
-    `;
+    const rootStyles = ``;
     const styles = document.createElement("style");
     const tailwindStyle = document.createElement("style");
     tailwindStyle.textContent = tailwindStyles || "";

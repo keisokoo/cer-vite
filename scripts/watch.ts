@@ -1,34 +1,14 @@
 import { exec } from "child_process";
 import chokidar from "chokidar";
-import { WebSocket, WebSocketServer } from "ws";
-
-const wss = new WebSocketServer({ port: 3001 });
-
-console.log("🚀 WebSocket 서버 실행 중 (포트: 3001)");
-
-wss.on("connection", (ws) => {
-  console.log("🔗 클라이언트 연결됨");
-
-  ws.on("message", (message) => {
-    console.log("📩 메시지 수신:", message.toString());
-
-    const messageType = message.toString();
-
-    if (messageType === "reload") {
-      wss.clients.forEach((client) => {
-        if (client !== ws && client.readyState === WebSocket.OPEN) {
-          client.send(message.toString());
-        }
-      });
-    }
-  });
-
-  ws.on("close", () => {
-    console.log("❌ 클라이언트 연결 종료");
-  });
-});
+import WebSocketClient from "ws";
 
 console.log("🔍 파일 변경 감지 중...");
+
+const wss = new WebSocketClient("ws://localhost:3001");
+
+wss.on("open", () => {
+  console.log("🔗 클라이언트 연결됨");
+});
 
 chokidar
   .watch("src", {
@@ -46,15 +26,8 @@ chokidar
         return;
       }
       console.log("✅ 빌드 완료!\n", stdout);
-
       // WebSocket을 통해 background에 변경 사항 전송
-      wss.clients.forEach((client) => {
-        if (client.readyState === WebSocket.OPEN) {
-          client.send("reload");
-          console.log("📤 WebSocket으로 reload 메시지 전송");
-        } else {
-          console.log("⚠️ WebSocket이 아직 연결되지 않음");
-        }
-      });
+      wss.send("reload");
+      console.log("📤 WebSocket으로 reload 메시지 전송");
     });
   });
