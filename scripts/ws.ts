@@ -13,6 +13,8 @@ wss.on("connection", (ws) => {
     const messageType = message.toString();
 
     if (messageType === "reload") {
+      // 접속된 클라이언트에 이벤트 전파
+      console.log("🔄 확장 프로그램 자동 리로드 실행!", wss.clients.size);
       wss.clients.forEach((client) => {
         if (client !== ws && client.readyState === WebSocket.OPEN) {
           client.send(message.toString());

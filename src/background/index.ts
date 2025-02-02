@@ -27,6 +27,9 @@ function connectWebSocket() {
 
   ws.onclose = () => {
     console.log("❌ WebSocket 연결 종료됨. 3초 후 재연결 시도...");
+    setTimeout(() => {
+      connectWebSocket();
+    }, 3000);
   };
 }
 
